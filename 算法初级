@@ -1,1 +1,23 @@
+public class Code02_KM {
+	// 在保证一个数组arr中，只有一个数出现了K次 ，其余的数出现了M次 其中M!=1；K<M
+	public static int onlyKTimes(int[] arr, int K, int M) {
+		int[] curArr = new int[32];
+		for (int num : arr) {
+			for (int i = 0; i < 32; i++) { 
+				curArr[i] += (num >> i) & 1; 
+			}
+
+		int ans = 0;
+		for (int i = 0; i < 32; i++) {
+			if (curArr[i] % M != 0) {
+				ans |= (1 << i);    
+			}
+		}
+		return ans;
+	}
+	public static void main(String[] args) {
+		int[] arr = { 2, 3, 4, 2, 3, 4, 3, 4, 3, 4 };
+		System.out.println(onlyKTimes(arr, 2, 4));
+	}
+}
 
